@@ -32,12 +32,12 @@ describe Board do
   end
 
   context 'game play' do
-    it 'knows there is one square to play in a size 1*1 board' do
+    it 'knows a 1*1 board starts with an unplayed square' do
       board = Board.new.populate
       expect(board.unplayed_squares.count).to eq(1)
     end
 
-    it 'knows there are 16 squares to play in a size 4*4 board' do
+    it 'knows 4*4 board starts with 16 unplayed squares' do
       board = Board.new(2).populate
       expect(board.unplayed_squares.count).to eq(16)
     end
@@ -47,6 +47,13 @@ describe Board do
       square = square = board.squares.first
       board.play(square, 1)
       expect(board.unplayed_squares.count).to eq(0)
+    end
+
+    it 'can count played squares' do
+      board = Board.new.populate
+      square = square = board.squares.first
+      board.play(square, 1)
+      expect(board.played_squares.count).to eq(1)
     end
 
     it 'cant play a square twice' do

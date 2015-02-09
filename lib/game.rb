@@ -17,10 +17,19 @@ class Game
 
   def make_a_move
     raise 'game finished' if finished?
-    chosen_square = board.unplayed_squares.first
+    chosen_square = board.unplayed_squares.sample
     available_moves = board.available_moves(chosen_square)
-    raise 'no available moves' if available_moves.count == 0
-    chosen_square.number = board.available_moves(chosen_square).first
+    if available_moves.count == 0
+      board.played_squares.count
+      go_back = (1 + (board.played_squares.count*(rand ** 4)).to_i)
+      puts go_back
+      go_back.times { unmake_last_move }
+      go_back.times { make_a_move }
+      make_a_move
+
+    else
+      chosen_square.number = board.available_moves(chosen_square).sample
+    end
   end
 
   def finished?

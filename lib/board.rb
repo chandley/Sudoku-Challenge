@@ -25,6 +25,10 @@ class Board
     boxes.map(&:squares).flatten.select { |square| !square.played? }
   end
 
+  def played_squares
+    squares - unplayed_squares
+  end
+
   def regions_containing(square)
     @regions.select { |region| region.squares.include?(square) }
   end
