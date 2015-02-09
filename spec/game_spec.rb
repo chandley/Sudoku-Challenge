@@ -31,15 +31,15 @@ describe Game do
     expect(game2.finished?).to be(true)
   end
 
-  it 'can complete a size 3 game' do
-    game3 = Game.new(3)
-    expect(game3.finished?).to be(false)
-    81.times { game3.make_a_move }
-    expect(game3.finished?).to be(true)
-  end
+  # it 'can complete a size 3 game' do
+  #   game3 = Game.new(3)
+  #   expect(game3.finished?).to be(false)
+  #   81.times { game3.make_a_move }
+  #   expect(game3.finished?).to be(true)
+  # end
 
   context 'choosing a move' do
-    it 'can unmake thelast move' do
+    it 'can unmake the last move' do
       game.make_a_move
       game.unmake_last_move
       expect(game.finished?).to be(false)

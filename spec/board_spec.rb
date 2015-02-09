@@ -88,6 +88,18 @@ describe Board do
       square = board.squares.first
       expect(board.available_moves(square)).to eq([1,2,3,4])
     end
+
+    it 'knows which square has the fewest legal moves' do
+      board = Board.new(2).populate
+      square = board.squares.first
+      board.play(square, 1)
+      expect(board.available_moves(board.square_least_moves)).to eq([2,3,4])
+    end
+
+    it 'knows can choose a square with fewest moves for empty board' do
+      board = Board.new(2).populate
+      expect(board.available_moves(board.square_least_moves)).to eq([1,2,3,4])
+    end
   end
 
 end

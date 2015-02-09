@@ -54,5 +54,10 @@ class Board
     squares.index(square)
   end
 
+  def square_least_moves
+    return squares.first if played_squares.count == 0
+    unplayed_squares.sort{|x,y| available_moves(y) <=> available_moves(x)}.first
+  end
+
 
 end
